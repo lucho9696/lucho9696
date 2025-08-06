@@ -15,10 +15,10 @@ Desarrollador Full Stack | PHP, Laravel, Vue, Nuxt, MySQL, Docker , React, Node.
   🔗 [Sitio web](https://jsimportaciones.com.ar)  
   📁 [Repositorio en GitLab](https://gitlab.com/luciopiacentini14/app-jsimportaciones)
 
-- 📊 **Sistema contable Laravel + React**  
+<!-- - 📊 **Sistema contable Laravel + React**  
   Aplicación de gestión para comercios: control de stock, facturación, productos y reportes.  
   Arquitectura desacoplada: Laravel API + React SPA.  
-  🔧 (Repositorio privado por el momento)
+  🔧 (Repositorio privado por el momento) -->
 
 ## 🛠 Tecnologías
 ![PHP](https://img.shields.io/badge/PHP-777BB4?style=flat&logo=php&logoColor=white)
