@@ -1,12 +1,15 @@
+![Logo](assets/images/logo.png)
+
 # Hola 👋, soy Lucio Piacentini
 Desarrollador Full Stack | PHP, Laravel, Vue, Nuxt, MySQL, Docker , React, Node.js, Supabase
+📍 Villa María, Córdoba, Argentina
 
 ## 🚀 Proyectos Destacados
 
 - 🔷 **PlanoYa**  
   Ecommerce de planos para casas y edificaciones.  
   Desarrollado con Laravel, Vue y Vuetify.  
-  🔗 [Sitio web](https://planoya.com)  
+  🔗 [Sitio web](https://planoya.com.ar)  
   🔒 [Repositorio privado](https://gitlab.com/planoya/dev-planyoya)
 
 - 🌍 **jsImportaciones**  
