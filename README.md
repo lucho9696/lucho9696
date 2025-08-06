@@ -2,7 +2,7 @@
 Desarrollador Full Stack | PHP, Laravel, Vue, Nuxt, MySQL, Docker
 
 ## 🚀 Proyectos Destacados
-- **[PlanoYa](https://planoya.com)** → Sistema de gestión contable para PYMEs.
+- **[PlanoYa](https://planoya.com)** → Eccomerce de planos para casas y edificaciones varias.
 - **[jsImportaciones](https://jsimportaciones.com.ar)** → Plataforma de importaciones internacionales.
 - **Sistema contable Laravel + React** → Gestión de stock, facturación y productos.
 
