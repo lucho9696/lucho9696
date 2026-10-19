@@ -1,0 +1,30 @@
+# Entorno de desarrollo: API PHP + frontend React (Vite) con recarga en caliente.
+# Uso: cp .env.example .env && docker compose up --build
+services:
+  api:
+    build: ./backend
+    environment:
+      WHATSAPP_NUMBER: ${WHATSAPP_NUMBER:-WHATSAPP_NUMBER_HERE}
+      DEMO_MODE: ${DEMO_MODE:-true}
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./backend:/app
+    healthcheck:
+      test: ["CMD", "php", "-r", "exit(@file_get_contents('http://127.0.0.1:8000/api/health') ? 0 : 1);"]
+      interval: 10s
+      timeout: 3s
+      retries: 5
+
+  web:
+    build: ./frontend
+    environment:
+      VITE_API_PROXY_TARGET: http://api:8000
+    ports:
+      - "5173:5173"
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    depends_on:
+      api:
+        condition: service_healthy
