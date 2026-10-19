@@ -5,3 +5,5 @@ backend/.env
 .vercel/
 *.log
 .DS_Store
+.vercel
+.env*
