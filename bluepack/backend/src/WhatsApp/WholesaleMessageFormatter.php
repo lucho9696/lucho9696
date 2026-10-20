@@ -47,7 +47,7 @@ final class WholesaleMessageFormatter
         }
 
         $lines[] = '';
-        $lines[] = 'Quedo a la espera de información sobre precios mayoristas y condiciones comerciales.';
+        $lines[] = '¿Me pasan precios mayoristas y condiciones? ¡Gracias!';
 
         return implode("\n", $lines);
     }

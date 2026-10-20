@@ -8,7 +8,7 @@ export function BenefitsSection() {
         <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-5 lg:gap-6">
           {BENEFITS.map(({ icon: Icon, title, description }) => (
             <li key={title} className="flex gap-4 rounded-2xl p-2 lg:flex-col lg:gap-3">
-              <span className="grid size-12 shrink-0 place-items-center rounded-2xl bg-brand-50 text-brand-600">
+              <span className="grid size-12 shrink-0 place-items-center rounded-2xl bg-accent-50 text-accent-700 ring-1 ring-inset ring-accent-100">
                 <Icon className="size-6" aria-hidden />
               </span>
               <span>

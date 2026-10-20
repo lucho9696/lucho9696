@@ -14,7 +14,7 @@ export function ProductBadges({ product, className = '' }: { product: Product; c
         </Badge>
       )}
       {product.isNew && (
-        <Badge tone="success">
+        <Badge tone="accent">
           <Sparkles className="size-3" aria-hidden />
           Nuevo
         </Badge>

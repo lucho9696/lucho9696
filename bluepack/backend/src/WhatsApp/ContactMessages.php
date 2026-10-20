@@ -20,7 +20,7 @@ final class ContactMessages
 
     public function wholesale(): string
     {
-        return "Hola, {$this->storeName}. Tengo un comercio y quisiera consultar precios y condiciones para compras por mayor.";
+        return "Hola, {$this->storeName}. Tengo un negocio y quisiera consultar precios y condiciones para comprar por mayor.";
     }
 
     public function product(Product $product): string

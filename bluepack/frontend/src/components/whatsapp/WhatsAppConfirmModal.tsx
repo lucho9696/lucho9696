@@ -19,18 +19,29 @@ interface WhatsAppConfirmModalProps {
 }
 
 /** Vista previa con el formato de WhatsApp: *texto* se muestra en negrita. */
+// Formato de WhatsApp: *negrita* y _cursiva_ (la cursiva solo entre espacios o bordes, como en la app).
+const FORMATTED = /(\*[^*\n]+\*|(?<=^|\s)_[^_\n]+_(?=\s|$))/g
+
 function MessagePreview({ message }: { message: string }) {
   return message.split('\n').map((line, lineIndex) => (
     <span key={lineIndex} className="block min-h-[1lh]">
-      {line.split(/(\*[^*\n]+\*)/g).map((part, index) =>
-        /^\*[^*]+\*$/.test(part) ? (
-          <strong key={index} className="font-semibold text-navy-900">
-            {part.slice(1, -1)}
-          </strong>
-        ) : (
-          part
-        ),
-      )}
+      {line.split(FORMATTED).map((part, index) => {
+        if (/^\*[^*]+\*$/.test(part)) {
+          return (
+            <strong key={index} className="font-semibold text-navy-900">
+              {part.slice(1, -1)}
+            </strong>
+          )
+        }
+        if (/^_[^_]+_$/.test(part)) {
+          return (
+            <em key={index} className="text-muted">
+              {part.slice(1, -1)}
+            </em>
+          )
+        }
+        return part
+      })}
     </span>
   ))
 }

@@ -1,4 +1,4 @@
-import { Boxes, MessageCircleMore, ShoppingBasket, Store, Truck, type LucideIcon } from 'lucide-react'
+import { Boxes, MessageCircleMore, PackageCheck, ShoppingBag, Store, type LucideIcon } from 'lucide-react'
 
 export interface Benefit {
   icon: LucideIcon
@@ -6,31 +6,31 @@ export interface Benefit {
   description: string
 }
 
-/** Propuestas de valor genéricas (no son promesas verificadas). */
+/** Propuestas de valor de Blue Pack, basadas en su comunicación pública (no son promesas verificadas). */
 export const BENEFITS: Benefit[] = [
   {
+    icon: ShoppingBag,
+    title: 'Por mayor y por menor',
+    description: 'Comprás en cantidad para tu negocio o solo lo que necesitás.',
+  },
+  {
     icon: Boxes,
-    title: 'Variedad de productos',
-    description: 'Vasos, envases, bolsas, papel y packaging en un mismo catálogo.',
+    title: 'Todo lo que tu negocio necesita',
+    description: 'Vasos, servilletas, bolsas, cajas, envases y más en un mismo lugar.',
   },
   {
     icon: Store,
-    title: 'Soluciones para tu negocio',
-    description: 'Pensado para comercios, gastronomía, eventos y hogares.',
-  },
-  {
-    icon: ShoppingBasket,
-    title: 'Compra simple y organizada',
-    description: 'Buscá, filtrá y armá tu pedido en pocos pasos.',
+    title: 'Stock para comercios y gastronomía',
+    description: '¿Ya stockeaste tu negocio? Armá tu pedido desde el catálogo.',
   },
   {
     icon: MessageCircleMore,
-    title: 'Atención personalizada',
-    description: 'Confirmás el pedido conversando directamente con Blue Pack.',
+    title: 'Atención por WhatsApp',
+    description: 'Consultás y confirmás tu pedido hablando directo con Blue Pack.',
   },
   {
-    icon: Truck,
-    title: 'Consultas mayoristas',
-    description: 'Canal directo para compras por volumen y reventa.',
+    icon: PackageCheck,
+    title: 'Consultas por volumen',
+    description: 'Contanos qué necesitás y te pasamos las condiciones mayoristas.',
   },
 ]

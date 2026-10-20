@@ -9,7 +9,10 @@ use Bluepack\Support\Money;
 
 final class OrderMessageFormatter
 {
-    public function __construct(private readonly string $storeName)
+    /** Aviso que acompaña al total mientras el catálogo sea de demostración (DEMO_MODE). */
+    public const DEMO_NOTICE = '_Pedido armado en la tienda de demostración: productos y precios de referencia, a confirmar._';
+
+    public function __construct(private readonly string $storeName, private readonly bool $demoMode = false)
     {
     }
 
@@ -44,6 +47,9 @@ final class OrderMessageFormatter
         }
 
         $lines[] = '';
+        if ($this->demoMode) {
+            $lines[] = self::DEMO_NOTICE;
+        }
         $lines[] = '*TOTAL ESTIMADO: ' . Money::format($order->total()) . '*';
 
         if ($customer->comments !== null) {
@@ -52,7 +58,7 @@ final class OrderMessageFormatter
         }
 
         $lines[] = '';
-        $lines[] = 'Quedo a la espera de la confirmación del pedido y de las condiciones de entrega.';
+        $lines[] = '¿Me confirman disponibilidad, precio final y cómo coordinamos la entrega? ¡Gracias!';
 
         return implode("\n", $lines);
     }

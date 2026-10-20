@@ -90,7 +90,7 @@ final class App
 
         $router->post('/api/orders/whatsapp', fn (Request $r): JsonResponse => (new OrderController(
             new OrderFactory($this->repository(), (int) $this->config['orders']['maxLines'], (int) $this->config['orders']['maxQuantity']),
-            new OrderMessageFormatter($storeName),
+            new OrderMessageFormatter($storeName, (bool) $this->config['store']['demoMode']),
             $this->whatsapp(),
         ))->whatsapp($r));
 

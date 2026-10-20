@@ -12,15 +12,17 @@ use Bluepack\Support\Env;
 return [
     'store' => [
         'name' => Env::get('STORE_NAME', 'Blue Pack'),
-        'tagline' => 'Distribuidora de descartables | Soluciones para tu negocio',
+        'tagline' => 'Venta mayorista y minorista | Villa María, Córdoba',
         // Mientras sea true, la API informa que precios y datos son de demostración.
         'demoMode' => Env::bool('DEMO_MODE', true),
         'currency' => 'ARS',
     ],
 
     'whatsapp' => [
-        // Número de WhatsApp de Blue Pack en formato internacional, sin "+", espacios ni guiones.
-        // Ejemplo para Argentina (código país 54 + 9 + área sin 0 + número sin 15): 5493531234567
+        // Número de WhatsApp de Blue Pack en formato internacional, sin "+", espacios ni guiones
+        // (Argentina: 54 + código de área sin 0 + número sin 15; WhatsApp también acepta 549..., usar un solo formato).
+        // WhatsApp de ventas publicado en su Linktree (353 412-2227) → 543534122227 (mismo formato que su enlace).
+        // Activarlo solo con el OK del cliente: los pedidos de la demo llevan precios ficticios (con demoMode el mensaje lo aclara).
         // Mientras quede el placeholder, la tienda muestra "configuración pendiente" y no abre enlaces.
         'number' => Env::get('WHATSAPP_NUMBER', 'WHATSAPP_NUMBER_HERE'),
     ],

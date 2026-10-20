@@ -1,20 +1,13 @@
-import { Facebook, Instagram, Music2 } from 'lucide-react'
 import type { ReactNode } from 'react'
 import { Link } from 'react-router-dom'
 import { Container } from '@/components/ui/Container'
 import { Logo } from '@/components/ui/Logo'
 import { WhatsAppButton } from '@/components/whatsapp/WhatsAppButton'
-import { BUSINESS_INFO_PLACEHOLDER, MAIN_NAV, SITE } from '@/content/site'
+import { BUSINESS_INFO, MAIN_NAV, SITE, SOCIAL_LINKS } from '@/content/site'
 import { useStoreConfig } from '@/context/StoreConfigContext'
 import { useCategories } from '@/hooks/useCategories'
 import { useDemoMode } from '@/hooks/useDemoMode'
 import { catalogUrl } from '@/lib/catalogParams'
-
-const SOCIAL_PLACEHOLDERS = [
-  { label: 'Instagram', icon: Instagram },
-  { label: 'Facebook', icon: Facebook },
-  { label: 'TikTok', icon: Music2 },
-]
 
 function FooterColumn({ title, children }: { title: string; children: ReactNode }) {
   return (
@@ -42,18 +35,20 @@ export function Footer() {
             Escribinos por WhatsApp
           </WhatsAppButton>
           <div className="mt-6">
-            <p className="text-xs text-white/50">Redes sociales (a definir)</p>
+            <p className="text-xs text-white/60">Seguinos en redes</p>
             <ul className="mt-2 flex gap-2">
-              {SOCIAL_PLACEHOLDERS.map(({ label, icon: Icon }) => (
+              {SOCIAL_LINKS.map(({ label, handle, href, icon: Icon }) => (
                 <li key={label}>
-                  <span
-                    className="grid size-10 place-items-center rounded-xl border border-dashed border-white/25 text-white/50"
-                    title={`${label}: perfil a confirmar`}
-                    aria-label={`${label}: perfil a confirmar`}
-                    role="img"
+                  <a
+                    href={href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`${SITE.name} en ${label}`}
+                    title={`${label}: ${handle}`}
+                    className="grid size-10 place-items-center rounded-xl border border-white/20 bg-white/5 text-white/85 transition-colors hover:border-accent-300/60 hover:bg-white/10 hover:text-accent-200"
                   >
                     <Icon className="size-4" aria-hidden />
-                  </span>
+                  </a>
                 </li>
               ))}
             </ul>
@@ -87,29 +82,22 @@ export function Footer() {
 
         <div className="col-span-2 lg:col-span-1">
           <FooterColumn title="Información comercial">
-            {BUSINESS_INFO_PLACEHOLDER.map((item) => (
-              <li key={item.label} className="text-white/70">
-                <span className="block text-xs text-white/50">{item.label}</span>
+            {BUSINESS_INFO.map((item) => (
+              <li key={item.label} className="text-white/85">
+                <span className="block text-xs text-white/65">{item.label}</span>
                 {item.value}
               </li>
             ))}
-            <li>
-              <Link to="/preguntas-frecuentes" className={linkClass}>
-                Preguntas frecuentes
-              </Link>
-            </li>
           </FooterColumn>
-          <p className="mt-5 rounded-xl border border-white/15 bg-white/5 p-3 text-xs leading-relaxed text-white/60">
-            Datos de ejemplo. Dirección, horarios, redes y condiciones comerciales se completarán cuando Blue Pack los confirme.
-          </p>
         </div>
       </Container>
       <div className="border-t border-white/10">
-        <Container className="flex flex-col gap-2 py-5 text-xs text-white/55 sm:flex-row sm:items-center sm:justify-between">
+        <Container className="flex flex-col gap-2 py-5 text-xs text-white/60 sm:flex-row sm:items-center sm:justify-between">
           <p>
-            © {new Date().getFullYear()} Blue Pack{demo && ' · Tienda demostrativa.'}
+            © {new Date().getFullYear()} {SITE.fullName} · {SITE.location}
+            {demo && ' · Tienda demostrativa.'}
           </p>
-          {demo && <p>Productos, precios e imágenes son ilustrativos y no constituyen una oferta comercial.</p>}
+          {demo && <p>Los productos, precios e imágenes de la tienda son ilustrativos y no constituyen una oferta comercial.</p>}
         </Container>
       </div>
     </footer>

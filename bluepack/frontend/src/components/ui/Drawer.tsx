@@ -11,6 +11,8 @@ interface DrawerProps {
   children: ReactNode
   footer?: ReactNode
   headerExtra?: ReactNode
+  /** Oculta visualmente el título (sigue nombrando el diálogo para lectores de pantalla). */
+  hideTitle?: boolean
 }
 
 const PANEL: Record<NonNullable<DrawerProps['side']>, { base: string; closed: string }> = {
@@ -19,7 +21,7 @@ const PANEL: Record<NonNullable<DrawerProps['side']>, { base: string; closed: st
   bottom: { base: 'inset-x-0 bottom-0 max-h-[88vh] w-full rounded-t-3xl', closed: 'translate-y-full' },
 }
 
-export function Drawer({ open, onClose, title, side = 'right', children, footer, headerExtra }: DrawerProps) {
+export function Drawer({ open, onClose, title, side = 'right', children, footer, headerExtra, hideTitle = false }: DrawerProps) {
   const panelRef = useDialog(open, onClose)
   const titleId = useId()
   const panel = PANEL[side]
@@ -40,7 +42,7 @@ export function Drawer({ open, onClose, title, side = 'right', children, footer,
       >
         <div className="flex items-center justify-between gap-3 border-b border-line px-5 py-4">
           <div className="flex min-w-0 items-center gap-2">
-            <h2 id={titleId} className="truncate text-lg font-bold text-navy-900">
+            <h2 id={titleId} className={hideTitle ? 'sr-only' : 'truncate text-lg font-bold text-navy-900'}>
               {title}
             </h2>
             {headerExtra}

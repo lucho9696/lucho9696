@@ -155,10 +155,18 @@ $test('El mensaje de WhatsApp incluye cliente, productos, precios y total', func
         'Vasos plásticos transparentes 500 ml', 'Cantidad: 2 paquetes', 'Precio unitario: $ 8.500', 'Subtotal: $ 17.000',
         'Envases rectangulares para viandas 750 ml', 'Cantidad: 3 packs', 'Precio unitario: $ 12.000', 'Subtotal: $ 36.000',
         'TOTAL ESTIMADO: $ 53.000', 'Comentarios: Necesito consultar disponibilidad.',
-        'Quedo a la espera de la confirmación del pedido y de las condiciones de entrega.',
+        '¿Me confirman disponibilidad, precio final y cómo coordinamos la entrega? ¡Gracias!',
     ] as $fragment) {
         $assert(str_contains($message, $fragment), "Falta en el mensaje: {$fragment}");
     }
+    $assert(!str_contains($message, OrderMessageFormatter::DEMO_NOTICE), 'Sin modo demo no debe avisar precios de referencia');
+});
+
+$test('En modo demo el mensaje del pedido aclara que los precios son de referencia', function () use ($catalogPath, $validOrder, $assert) {
+    $factory = new OrderFactory(new JsonCatalogRepository($catalogPath), 100, 9999);
+    $message = (new OrderMessageFormatter('Blue Pack', true))->format($factory->fromPayload($validOrder));
+    $notice = OrderMessageFormatter::DEMO_NOTICE;
+    $assert(str_contains($message, $notice . "\n*TOTAL ESTIMADO: $ 53.000*"), 'El aviso de demo debe ir justo antes del total');
 });
 
 $test('Enlace wa.me: codificación correcta y número sin configurar', function () use ($equals, $assert) {
@@ -208,6 +216,7 @@ $test('API: checkout con número configurado devuelve enlace con el mensaje', fu
     $equals(200, $status);
     $assert(str_starts_with($body['whatsapp']['url'], 'https://wa.me/5493531234567?text='), 'Enlace wa.me');
     $equals($body['message'], rawurldecode(substr($body['whatsapp']['url'], strlen('https://wa.me/5493531234567?text='))));
+    $assert(str_contains($body['message'], OrderMessageFormatter::DEMO_NOTICE), 'Con DEMO_MODE (por defecto) el pedido avisa precios de referencia');
 });
 
 $test('API: errores de validación devuelven 422 con campos', function () use ($appWith, $call, $equals, $assert) {
@@ -225,6 +234,7 @@ $test('API: consulta mayorista', function () use ($appWith, $call, $equals, $ass
     $equals(200, $status);
     $assert(str_contains($body['message'], '• Envases para alimentos'), 'Categoría en el mensaje');
     $assert(!str_contains($body['message'], 'inexistente'), 'Ignora categorías inválidas');
+    $assert(str_ends_with($body['message'], '¿Me pasan precios mayoristas y condiciones? ¡Gracias!'), 'Cierre del mensaje mayorista');
     [$status] = $call($appWith('5493531234567'), 'POST', '/api/wholesale/whatsapp', [], ['name' => 'Ana']);
     $equals(422, $status);
 });

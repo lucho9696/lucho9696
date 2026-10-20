@@ -10,7 +10,7 @@ export default function NotFoundPage() {
   return (
     <Container className="grid items-center gap-10 py-16 sm:py-24 lg:grid-cols-2">
       <div className="order-2 text-center lg:order-1 lg:text-left">
-        <p className="text-sm font-semibold tracking-wide text-brand-500 uppercase">Error 404</p>
+        <p className="text-sm font-semibold tracking-wide text-accent-700 uppercase">Error 404</p>
         <h1 className="mt-2 text-4xl font-extrabold tracking-tight text-navy-900 sm:text-5xl">Esta página quedó vacía</h1>
         <p className="mt-4 text-lg text-muted">La dirección que buscás no existe o fue movida. Te ayudamos a volver a la tienda.</p>
         <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row lg:justify-start">

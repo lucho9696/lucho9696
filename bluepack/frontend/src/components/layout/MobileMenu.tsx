@@ -1,9 +1,10 @@
-import { ChevronRight } from 'lucide-react'
+import { ChevronRight, MapPin } from 'lucide-react'
 import { NavLink } from 'react-router-dom'
 import { ProductImage } from '@/components/product/ProductImage'
 import { Drawer } from '@/components/ui/Drawer'
+import { Logo } from '@/components/ui/Logo'
 import { WhatsAppButton } from '@/components/whatsapp/WhatsAppButton'
-import { MAIN_NAV, SITE } from '@/content/site'
+import { MAIN_NAV, SITE, SOCIAL_LINKS } from '@/content/site'
 import { useStoreConfig } from '@/context/StoreConfigContext'
 import { useCategories } from '@/hooks/useCategories'
 import { useDemoMode } from '@/hooks/useDemoMode'
@@ -20,6 +21,8 @@ export function MobileMenu({ open, onClose }: { open: boolean; onClose: () => vo
       onClose={onClose}
       side="left"
       title="Menú"
+      hideTitle
+      headerExtra={<Logo onClick={onClose} />}
       footer={
         <div className="space-y-3">
           <WhatsAppButton href={config?.whatsapp.links.general} className="w-full">
@@ -59,6 +62,28 @@ export function MobileMenu({ open, onClose }: { open: boolean; onClose: () => vo
                 </span>
                 <span className="text-xs leading-tight font-semibold text-navy-900">{category.name}</span>
               </NavLink>
+            </li>
+          ))}
+        </ul>
+      </div>
+      <div className="border-t border-line px-6 py-5">
+        <p className="font-semibold text-navy-900">{SITE.fullName}</p>
+        <p className="mt-1 flex items-center gap-1.5 text-sm text-muted">
+          <MapPin className="size-4 shrink-0 text-accent-600" aria-hidden />
+          Venta mayorista y minorista · {SITE.location}
+        </p>
+        <ul className="mt-3 flex gap-2">
+          {SOCIAL_LINKS.map(({ label, href, icon: Icon }) => (
+            <li key={label}>
+              <a
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`${SITE.name} en ${label}`}
+                className="grid size-10 place-items-center rounded-xl border border-line text-navy-900 transition-colors hover:border-accent-200 hover:bg-accent-50 hover:text-accent-700"
+              >
+                <Icon className="size-4" aria-hidden />
+              </a>
             </li>
           ))}
         </ul>

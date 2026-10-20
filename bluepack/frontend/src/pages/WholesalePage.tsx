@@ -1,4 +1,4 @@
-import { Building2, Check, ClipboardList, Loader2, MessagesSquare, Handshake, Store, Truck, UtensilsCrossed } from 'lucide-react'
+import { Check, ClipboardList, Croissant, Handshake, Loader2, MessagesSquare, ShoppingBasket, Store, UtensilsCrossed } from 'lucide-react'
 import { useRef, useState, type FormEvent } from 'react'
 import { PageHeader } from '@/components/layout/PageHeader'
 import { Alert } from '@/components/ui/Alert'
@@ -20,8 +20,8 @@ const EMPTY: WholesalePayload = { name: '', business: '', businessType: '', city
 const AUDIENCES = [
   { icon: Store, title: 'Comercios', text: 'Almacenes, despensas, kioscos y autoservicios.' },
   { icon: UtensilsCrossed, title: 'Gastronomía', text: 'Restaurantes, rotiserías, bares y food trucks.' },
-  { icon: Truck, title: 'Revendedores', text: 'Distribuidores y comercios que revenden.' },
-  { icon: Building2, title: 'Eventos e instituciones', text: 'Catering, empresas, clubes y escuelas.' },
+  { icon: Croissant, title: 'Panaderías', text: 'Bolsas, envases e insumos para panadería.' },
+  { icon: ShoppingBasket, title: 'Todo tipo de negocio', text: 'Si tu negocio usa descartables, tenemos lo que necesitás.' },
 ]
 
 const STEPS = [
@@ -31,7 +31,7 @@ const STEPS = [
 ]
 
 export default function WholesalePage() {
-  usePageMeta('Compras mayoristas', 'Consultas mayoristas para comercios, gastronómicos y revendedores. Coordiná precios y condiciones con Blue Pack por WhatsApp.')
+  usePageMeta('Compras mayoristas', 'Venta por mayor de descartables en Villa María, Córdoba. Consultá precios y condiciones para tu comercio o local gastronómico con Blue Pack por WhatsApp.')
   const { config } = useStoreConfig()
   const { data: categories } = useCategories()
   const [form, setForm] = useState<WholesalePayload>(EMPTY)
@@ -74,7 +74,7 @@ export default function WholesalePage() {
       <PageHeader
         eyebrow="Mayoristas"
         title="Compras por mayor para tu negocio"
-        description="Si comprás por volumen, coordinamos directamente con vos. Contanos qué productos necesitás y te contactamos con la información comercial."
+        description="¿Ya stockeaste tu negocio? Si comprás por volumen, contanos qué productos necesitás y te pasamos precios y condiciones por WhatsApp."
         breadcrumbs={[{ label: 'Inicio', to: '/' }, { label: 'Mayoristas' }]}
       >
         <WhatsAppButton href={config?.whatsapp.links.wholesale} size="lg">
@@ -90,7 +90,7 @@ export default function WholesalePage() {
           <ul className="mt-6 grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4">
             {AUDIENCES.map(({ icon: Icon, title, text }) => (
               <li key={title} className="rounded-3xl border border-line bg-white p-4 transition-shadow hover:shadow-card sm:p-5">
-                <span className="grid size-12 place-items-center rounded-2xl bg-brand-50 text-brand-600">
+                <span className="grid size-12 place-items-center rounded-2xl bg-accent-50 text-accent-700 ring-1 ring-inset ring-accent-100">
                   <Icon className="size-6" aria-hidden />
                 </span>
                 <p className="mt-4 font-bold text-navy-900">{title}</p>
@@ -120,7 +120,7 @@ export default function WholesalePage() {
               ))}
             </ol>
             <Alert className="mt-8">
-              Los precios mayoristas, mínimos de compra y condiciones comerciales se informan directamente por Blue Pack. Esta sección no publica condiciones especiales.
+              Los precios mayoristas, mínimos de compra, repartos y condiciones comerciales los informa Blue Pack directamente por WhatsApp. Esta sección no publica condiciones especiales.
             </Alert>
           </section>
 

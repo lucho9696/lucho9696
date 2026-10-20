@@ -33,7 +33,7 @@ export function Header() {
     }`
 
   return (
-    <header className={`sticky top-0 z-40 border-b bg-white/95 backdrop-blur-md transition-shadow duration-300 supports-[backdrop-filter]:bg-white/85 ${scrolled ? 'border-line shadow-card' : 'border-line/70'}`}>
+    <header className={`sticky top-0 z-40 border-b bg-white transition-shadow duration-300 ${scrolled ? 'border-line shadow-card' : 'border-line/70'}`}>
       <Container className="flex h-16 items-center gap-3 lg:h-[76px] lg:gap-8">
         <button
           type="button"
