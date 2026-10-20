@@ -1,0 +1,13 @@
+{
+  "name": "bluepack",
+  "private": true,
+  "description": "Tienda online demostrativa de Blue Pack (backend PHP + frontend React).",
+  "engines": {
+    "node": "22.x"
+  },
+  "scripts": {
+    "build": "npm run build --prefix frontend",
+    "test": "php backend/tests/run.php && npm test --prefix frontend",
+    "lint": "npm run lint --prefix frontend"
+  }
+}
