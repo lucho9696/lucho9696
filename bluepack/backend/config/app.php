@@ -20,9 +20,9 @@ return [
 
     'whatsapp' => [
         // Número de WhatsApp de Blue Pack en formato internacional, sin "+", espacios ni guiones
-        // (Argentina: 54 + código de área sin 0 + número sin 15; WhatsApp también acepta 549..., usar un solo formato).
-        // WhatsApp de ventas publicado en su Linktree (353 412-2227) → 543534122227 (mismo formato que su enlace).
-        // Activarlo solo con el OK del cliente: los pedidos de la demo llevan precios ficticios (con demoMode el mensaje lo aclara).
+        // (Argentina, celular: 54 + 9 + código de área sin 0 + número sin 15).
+        // WhatsApp de ventas confirmado por el cliente: +54 9 3534 12-2227 → 5493534122227.
+        // Los pedidos de la demo llevan precios ficticios: con demoMode el mensaje lo aclara antes del total.
         // Mientras quede el placeholder, la tienda muestra "configuración pendiente" y no abre enlaces.
         'number' => Env::get('WHATSAPP_NUMBER', 'WHATSAPP_NUMBER_HERE'),
     ],

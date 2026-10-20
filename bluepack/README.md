@@ -117,7 +117,7 @@ datos que no estén publicados.
 | Nombre | Blue Pack · Blue Pack Descartables ("BLUE PACK \| DESCARTABLES") | Perfil de Instagram |
 | Propuesta | "Venta mayorista y minorista" · "Tenemos todo lo que tu negocio necesita" | Bio de Instagram |
 | Ubicación | Villa María, Córdoba (sin dirección exacta) | Bio de Instagram y de Linktree |
-| WhatsApp de ventas | 353 412-2227 (`543534122227`) | Linktree: "Whatsapp de ventas" |
+| WhatsApp de ventas | 353 412-2227 (`5493534122227`) | Linktree: "Whatsapp de ventas"; número confirmado por el cliente |
 | WhatsApp de consultas | 353 566-9848 (`543535669848`) | Linktree: "Quiero hacer una consulta" |
 | Redes | [Instagram](https://www.instagram.com/bluepack.descartables/) · [Facebook](https://www.facebook.com/bluepack.descartables) · [Linktree](https://linktr.ee/bluepack.descartables) | Linktree |
 | Logo | Logo circular azul marino con bolsas y texto "BLUE PACK / DESCARTABLES" (Nosotros, `og-image.png`, `apple-touch-icon.png`). Para tamaños chicos (favicon, cabecera, pie, menú móvil) se usa un isotipo sin texto redibujado en SVG a partir de ese logo: círculo, anillos y bolsas | Foto de perfil de Instagram |
@@ -137,12 +137,12 @@ El número de los botones y del checkout está centralizado en **una sola variab
 `WHATSAPP_NUMBER`. Los teléfonos del pie de página y de Preguntas frecuentes (`CONTACT_PHONES` en `site.ts`, que
 también usa `faq.ts`) son texto informativo, sin enlaces: no generan llamadas (`tel:`) ni enlaces de WhatsApp.
 
-**Valor recomendado**: `WHATSAPP_NUMBER=543534122227` (WhatsApp de ventas del Linktree de Blue Pack).
+**Valor configurado**: `WHATSAPP_NUMBER=5493534122227` (WhatsApp de ventas de Blue Pack, +54 9 3534 12-2227,
+confirmado por el cliente).
 
-> ⚠️ Activarlo **solo con el OK del cliente**: mientras el catálogo sea de demostración, los pedidos que arma la web
-> llevan productos y precios ficticios y llegarían a su WhatsApp real. Con `DEMO_MODE=true` el mensaje del pedido
-> lo aclara antes del total (*"Pedido armado en la tienda de demostración: productos y precios de referencia, a confirmar"*),
-> pero igual conviene avisarle a Blue Pack.
+> ⚠️ Mientras el catálogo sea de demostración, los pedidos que arma la web llevan productos y precios ficticios y
+> llegan a ese WhatsApp real. Con `DEMO_MODE=true` el mensaje del pedido lo aclara antes del total
+> (*"Pedido armado en la tienda de demostración: productos y precios de referencia, a confirmar"*).
 
 | Entorno | Dónde se configura |
 | --- | --- |
@@ -151,9 +151,7 @@ también usa `faq.ts`) son texto informativo, sin enlaces: no generan llamadas (
 | Vercel | Project Settings → Environment Variables → `WHATSAPP_NUMBER` |
 
 **Formato**: internacional, solo dígitos, sin `+`, espacios ni guiones.
-Para Argentina: `54` + código de área sin `0` + número sin `15`. Formato elegido: `543534122227`, el mismo que usa
-el enlace del Linktree de Blue Pack. WhatsApp también acepta la forma con el `9` de celular (`5493534122227`);
-si el cliente prefiere esa, usarla en todos lados (variable, `.env.example` y esta guía).
+Para un celular de Argentina: `54` + `9` + código de área sin `0` + número sin `15` (por ejemplo `5493534122227`).
 
 Mientras quede el placeholder `WHATSAPP_NUMBER_HERE` (o un valor inválido):
 
@@ -230,11 +228,10 @@ npm run build
 
 ## Checklist antes de publicar para el cliente
 
-- [ ] Obtener el OK de Blue Pack y configurar `WHATSAPP_NUMBER=543534122227` (o el número que indiquen). Sin esa
-      variable, el checkout muestra "configuración pendiente": para mostrarle la demo al cliente, cargar al menos un
-      número de prueba propio.
+- [x] Configurar `WHATSAPP_NUMBER=5493534122227` en Vercel (número de ventas confirmado por el cliente). Sin esa
+      variable, el checkout muestra "configuración pendiente".
 - [ ] Reemplazar catálogo, precios e imágenes de producto por los reales.
-- [ ] Confirmar con Blue Pack los datos públicos usados (teléfonos, redes, formato del número) y, si quieren, sumar
+- [ ] Confirmar con Blue Pack los demás datos públicos usados (WhatsApp de consultas, redes) y, si quieren, sumar
       dirección, horarios y zonas de reparto en `site.ts` y en Preguntas frecuentes.
 - [ ] Redactar condiciones reales (repartos, retiros, medios de pago, mínimos mayoristas) en Preguntas frecuentes.
 - [ ] Si Blue Pack comparte su historia o fotos reales (local o depósito, equipo), sumarlas en `/nosotros`.
